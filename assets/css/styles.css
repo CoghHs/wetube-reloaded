@@ -149,7 +149,8 @@ form:not(.search__form) {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-input:not([type=range]) {
+input:not([type=range]),
+imput[type=submit] {
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
@@ -160,7 +161,8 @@ input:not([type=range]) {
   color: white;
   width: 90%;
 }
-input:not([type=range])::placeholder {
+input:not([type=range])::placeholder,
+imput[type=submit]::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -168,11 +170,21 @@ input[type=submit],
 .social__btn {
   border-radius: 5px;
   padding: 12px 20px;
-  background-color: white;
-  color: #cc0d00;
-  text-align: center;
+  background-color: white !important;
+  color: #cc0d00 !important;
+  text-align: center !important;
   cursor: pointer;
   display: block;
+  border: none;
+}
+input[type=submit]:focus,
+.social__btn:focus {
+  outline: none;
+}
+input[type=submit]:disabled,
+.social__btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .social-login {
@@ -266,20 +278,6 @@ input[type=submit],
   cursor: pointer;
 }
 
-form label {
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.edit-profile__password {
-  margin-top: 50px;
-  text-align: center;
-}
-.edit-profile__password a {
-  text-decoration: underline;
-}
-
 .profile__data {
   max-width: 420px;
   margin: 0 auto;
@@ -294,6 +292,71 @@ form label {
 }
 .profile__data h3 {
   font-size: 18px;
+}
+
+form label {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.edit-profile__password {
+  margin-top: 50px;
+  text-align: center;
+}
+.edit-profile__password a {
+  text-decoration: underline;
+}
+
+.upload__container {
+  width: 100%;
+}
+.upload__container .upload__video {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload__container .upload__video video {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.video__data {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.video__data .video__title {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+.video__data .video__createdAt {
+  font-size: 12px;
+}
+.video__data .video__owner {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.video__data .video__owner a {
+  color: cornflowerblue;
+  text-decoration: underline;
+}
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.video__comments .video__comment {
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
 }
 
 a {
@@ -312,4 +375,32 @@ main {
   width: 100%;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px;
+  padding: 10px 20px;
+  border-radius: 10000px;
+  text-align: center;
+  animation: goAway 0.5s ease-in-out forwards;
+  animation-delay: 5s;
+}
+.message.error {
+  background-color: #cc0d00;
+  color: white;
 }
