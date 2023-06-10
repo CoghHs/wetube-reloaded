@@ -1,36 +1,118 @@
 header {
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .header__logo {
-      color: $red;
-      font-size: 38px;
-    }
-    ul {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      li {
-        margin-left: 30px;
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-      i {
-        font-size: 16px;
-      }
-    }
-    .header__btn {
-      background-color: white;
-      color: $bg;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-    .header__avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-  }
-  
+	padding: 20px 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.header__logo {
+		color: $red;
+		display: flex;
+		align-items: center;
+		i.fab.fa-youtube {
+			font-size: 38px;
+			&:hover {
+				animation: bounce 0.5s ease-in-out forwards;
+			}
+		}
+		span {
+			color: white;
+			font-size: 28px;
+			font-weight: 600;
+			margin-left: 3px;
+		}
+	}
+	ul {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		li {
+			margin-left: 30px;
+			font-size: 14px;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+		i {
+			font-size: 16px;
+		}
+	}
+
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		25% {
+			transform: translateY(-10px);
+		}
+		50% {
+			transform: translateY(0);
+		}
+		75% {
+			transform: translateY(-5px);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes searchBig {
+		from {
+			transform: scale(1);
+		}
+		to {
+			transform: scale(1.5);
+		}
+	}
+
+	.fas.fa-search {
+		&:hover {
+			animation: searchBig 0.2s ease-in-out forwards;
+		}
+	}
+
+	.login__btn {
+		background-color: $red;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 30px;
+		&:hover {
+			background-color: rgb(101, 12, 12);
+			color: rgb(149, 149, 149);
+		}
+	}
+
+	.header__btn {
+		margin-left: -10px;
+		background-color: white;
+		color: $bg;
+		padding: 10px 20px;
+		border-radius: 30px;
+		&:hover {
+			background-color: rgb(149, 149, 149);
+			color: black;
+		}
+	}
+	.header__avatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+}
+
+i {
+	&:hover {
+		animation: bounce 0.5s ease-in-out forwards;
+	}
+}
+
+nav {
+	.logout__btn {
+		margin-left: -10px;
+		background-color: $red;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 30px;
+		&:hover {
+			background-color: rgb(101, 12, 12);
+			color: rgb(149, 149, 149);
+		}
+	}
+}
