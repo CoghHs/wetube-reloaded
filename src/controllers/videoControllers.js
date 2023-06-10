@@ -27,31 +27,42 @@ export const getEdit = async (req, res) => {
 		return res.status(404).render("404", { pageTitle: "Video not found." });
 	}
 	if (String(video.owner) !== String(_id)) {
-		req.flash("error", "You are not the owner of the video.");
+		req.flash("error", "Not authorized");
 		return res.status(403).redirect("/");
 	}
-	return res.render("edit", { pageTitle: `Edit ${video.title}`, video });
+	return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
 };
+
 export const postEdit = async (req, res) => {
 	const {
 		user: { _id },
 	} = req.session;
 	const { id } = req.params;
 	const { title, description, hashtags } = req.body;
-	const video = await Video.exists({ _id: id });
-	if (!video) {
-		return res.status(404).render("404", { pageTitle: "Video not found." });
+
+	try {
+		const video = await Video.findById(id);
+
+		if (!video) {
+			return res.status(404).render("404", { pageTitle: "Video not found." });
+		}
+
+		if (String(video.owner) !== String(_id)) {
+			req.flash("error", "You are not the owner of the video.");
+			return res.status(403).redirect("/");
+		}
+
+		video.title = title;
+		video.description = description;
+		video.hashtags = Video.formatHashtags(hashtags);
+		await video.save();
+
+		req.flash("success", "Changes saved.");
+		return res.redirect(`/videos/${id}`);
+	} catch (error) {
+		console.log(error);
+		return res.status(500).render("500", { pageTitle: "Server Error" });
 	}
-	if (String(video.owner) !== String(_id)) {
-		return res.status(403).redirect("/");
-	}
-	await Video.findByIdAndUpdate(id, {
-		title,
-		description,
-		hashtags: Video.formatHashtags(hashtags),
-	});
-	req.flash("success", "Changes Saved.");
-	return res.redirect(`/videos/${id}`);
 };
 
 export const getUpload = (req, res) => {
