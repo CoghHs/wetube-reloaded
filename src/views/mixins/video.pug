@@ -4,7 +4,7 @@ mixin video(video)
             div.video-mixin__data
                 div.video-mixin__meta
                     div.video-mixin__avatar
-                        img.header__avatar(src=loggedInUser.avatarUrl)
+                        img.header__avatar(src=(loggedInUser.avatarUrl.includes("github") ? "" : "/") + user.avatarUrl)
                     div.video-mixin__container    
                         div.video-mixin__span
                             span.video-mixin__title=video.title
