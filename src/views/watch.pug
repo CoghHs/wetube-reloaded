@@ -21,15 +21,21 @@ block content
                     i.fas.fa-expand
 
     div.video__data
-        p.video__title=video.title
-        p.video__description=video.description
-        small.video__owner Uploaded by 
-            a(href=`/users/${video.owner._id}`)=video.owner.name
-        small.video__createdAt=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
-        if String(video.owner._id) === String(loggedInUser._id)
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-            br
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+        div.video__titleDs
+            div.video__info
+                p.video__title=video.title
+                p.video__description=video.description
+        div.video__info-wrap
+            div.video__info-data
+                img.header__avatar(src=(video.owner.avatarUrl.includes("github") ? "" : "/") + video.owner.avatarUrl)
+            div.video__info-pre
+                small.video__owner Uploaded by 
+                    a(href=`/users/${video.owner._id}`)=video.owner.name
+                small.video__createdAt=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+                if String(video.owner._id) === String(loggedInUser._id)
+                    a(href=`${video.id}/edit`) Edit Video &rarr;
+                    br
+                    a(href=`${video.id}/delete`) Delete Video &rarr;
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm
