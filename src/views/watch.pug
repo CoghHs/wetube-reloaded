@@ -46,10 +46,10 @@ block content
         ul 
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
-                    img.header__avatar(src=(video.owner.avatarUrl.includes("github") ? "" : "/") + video.owner.avatarUrl) 
+                    i.fas.fa-comment
                     span   #{comment.text}
                     span.video__comment-createdAt=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
-                    if String(video.owner._id) === String(loggedInUser._id)
+                    if String(comment.owner._id) === String(loggedInUser._id)
                         span.video__delete ❌
 block script 
     script(src="/static/js/videoPlayer.js")
