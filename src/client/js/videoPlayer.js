@@ -124,7 +124,7 @@ const handleEnded = () => {
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetaData);
+// video.addEventListener("loadeddata", handleLoadedMetaData);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleVideoEnded);
 video.addEventListener("ended", handleEnded);
@@ -147,3 +147,7 @@ document.addEventListener("keyup", (event) => {
 		changeVideoTime(-5);
 	}
 });
+
+video.readyState
+	? handleLoadedMetaData()
+	: video.addEventListener("loadedmetadata", handleLoadedMetaData);
