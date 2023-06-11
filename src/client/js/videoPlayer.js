@@ -70,13 +70,16 @@ const handleTimelineChange = (event) => {
 };
 
 const handleFullScreen = () => {
+	console.log(videoContainer);
 	const fullScreen = document.fullscreenElement;
 	if (fullScreen) {
 		document.exitFullscreen();
 		fullScreenIcon.classList = "fas fa-expand";
+		videoContainer.classList.remove("video-fullScreen");
 	} else {
 		videoContainer.requestFullscreen();
 		fullScreenIcon.classList = "fas fa-compress";
+		videoContainer.classList.add("video-fullScreen");
 	}
 };
 
