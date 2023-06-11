@@ -8,9 +8,9 @@ block content
             span 🙂
         else
             if loggedInUser.avatarUrl.includes("github")
-                img.header__avatar(src=loggedInUser.avatarUrl)
+                img.profile__avatar(src=loggedInUser.avatarUrl)
             else
-                img.header__avatar(src="/" + loggedInUser.avatarUrl)
+                img.profile__avatar(src="/" + loggedInUser.avatarUrl)
         h3=user.name
     div.video-grid
         each video in user.videos

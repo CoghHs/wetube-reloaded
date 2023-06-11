@@ -6,6 +6,11 @@
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 50px;
+	.profile__avatar {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+	}
 	img {
 		margin-bottom: 10px;
 	}

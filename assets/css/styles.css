@@ -396,6 +396,11 @@ input[type=submit]:disabled,
   align-items: center;
   margin-bottom: 50px;
 }
+.profile__data .profile__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
 .profile__data img {
   margin-bottom: 10px;
 }
