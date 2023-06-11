@@ -164,6 +164,10 @@ export const createComment = async (req, res) => {
 };
 
 export const deleteComment = async (req, res) => {
+	if (req.session.user === undefined) {
+		req.flash("error", "Login first");
+		return res.status(401).redirect("/");
+	}
 	const {
 		session: {
 			user: { _id },
