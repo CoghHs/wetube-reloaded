@@ -26,6 +26,7 @@ block content
                 p.video__title=video.title
         div.video__info-wrap
             div.video__info-data
+            if video.owner.avatarUrl
                 img.header__avatar(src=(video.owner.avatarUrl.includes("github") ? "" : "/") + video.owner.avatarUrl)
             div.video__info-pre
                 p.video__description=video.description
